@@ -1,0 +1,50 @@
+### Sentence = Noun-Phrase + Verb-Phrase
+### Noun-Phrase = Article + Noun
+### Verb-Phrase = Verb + Noun-Phrase
+### Article = The, A
+### Noun = Man, ball, woman, table
+### Verb = Hit, took, saw, liked
+
+# Supposedly called the 'Context-free phrase structure' with generative syntax
+
+import random
+
+def sentence():
+    return nounPhrase() + verbPhrase()
+
+def verbPhrase():
+    return verb() + nounPhrase()
+
+def verb():
+    return oneOf('hit took saw liked'.split())
+    
+def article():
+    return oneOf('the a'.split())
+    
+def noun():
+    return oneOf('man ball woman table'.split())
+
+def nounPhrase():
+    return article() + AdjMaybe() + noun() + PPStar()
+
+def oneOf(l):
+    return [random.choice(l)]
+
+def AdjMaybe():
+    if random.randint(0, 1) == 0:
+        return adj() + AdjMaybe()
+    return []
+
+def PPStar():
+    if random.randint(0, 1) == 0:
+        return PP() + PPStar()
+    return []
+
+def PP():
+    return prep() + nounPhrase()
+
+def prep():
+    return oneOf('to in by with on'.split())
+    
+def adj():
+    return oneOf('big little blue green adiabatic'.split())
