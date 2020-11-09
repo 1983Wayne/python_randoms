@@ -1,0 +1,83 @@
+#############################################################################
+# This is a basic set of definitions for an object oriented deck of cards.  #
+# Hoping that when it comes time to integrate this with pygame or something #
+# that this all works halfway decently.  Will update when I find out what   #
+# all the bugs are down the road.                                           #
+#############################################################################
+
+import random
+
+### How many decks in a game deck, how big a starting hand is, and the game.
+CRIBBAGE = [1, 7, 'Cribbage']
+POKER = [1, 6, 'Poker']
+BLACKJACK = [6, 2, 'BlackJack']
+PLAYERS = {}
+
+def getGameToPlay():
+    gameWanted = int(input('CRIB, POKER, or 21? (1, 2, or 3) >  '))
+    if gameWanted == 1:
+        return CRIBBAGE
+    elif gameWanted == 2:
+        return POKER
+    else:
+        return BLACKJACK
+
+class Deck:
+    def __init__(self):
+        self.cardsInDeck = []
+        self.makeDeck()
+        self.shuffleDeck()
+        
+    def makeDeck(self):
+        for i in range(GAME[0]):
+            for item in '1 2 3 4 5 6 7 8 9 10 Jack Queen King'.split():
+                for jitem in 'spades hearts clubs diamonds'.split():
+                    self.cardsInDeck.append('{} of {}'.format(item, jitem))
+    
+    def shuffleDeck(self):
+        random.shuffle(self.cardsInDeck)
+        
+    def showDeck(self):
+        for card in self.cardsInDeck:
+            print(card)       
+            
+    def drawCard(self):
+        return self.cardsInDeck.pop(random.randint(0, len(self.cardsInDeck) -1))
+    
+class Player:
+    def __init__(self, startingCards, deck, name):
+        self.hand = []
+        self.name = name
+        
+        for i in range(startingCards):
+            self.hand.append(deck.drawCard())
+    
+    def showName(self):
+        return self.name
+    
+    def showHand(self):
+        for i in self.hand:
+            print(i)
+                
+    def drawCard(self, deck):
+        self.hand.append(deck.drawCard())
+        
+    ### MAY NOT NEED THIS IF THE DECK AND HANDS JusT GET REFRESHED. ###    
+    ###def discard(self, deck, cardIndex):
+    ###   deck.cardsInDeck.append(self.hand.pop(cardIndex)) 
+        
+def playerJoins(name):
+    PLAYERS[name] = Player(GAME[1], gameDeck, name)
+
+def playerQuits(name):
+    del PLAYERS[name]
+    
+def showPlayers():
+    return PLAYERS
+
+def getHand(name):
+    PLAYERS[name].showHand()
+    
+GAME = getGameToPlay()
+gameDeck = Deck()
+playerJoins('Dealer')
