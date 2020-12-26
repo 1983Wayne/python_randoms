@@ -1,0 +1,19 @@
+### Dice Simulation ###
+import random
+twoDice = {}
+
+for i in range(2, 13):
+    twoDice[str(i)] = 0
+    
+for i in range(1, 1001):
+    die1 = random.randint(1, 6)
+    die2 = random.randint(1, 6)
+    twoDice[str(die1 + die2)] += 1
+    
+    
+print("{:<8} {:<15}".format('Total','Simulated'))
+for k, v in twoDice.items():
+    sim = v / 10
+    print ("{:<8} {:<15}".format(k, sim))
+    
+# WILL PRINT OUT 1000 dice rolls added together.
