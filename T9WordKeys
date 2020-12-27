@@ -1,0 +1,19 @@
+### A Python Program to convert an input string into the amount of keystrokes needed to display your word. ###
+### For example : "Hello World!" takes the key presses : 44335555556660966677755531111                     ###
+##############################################################################################################
+
+symbols = {'.,?!:' : 1, 'abc' : 2, 'def' : 3, 'ghi' : 4, 'jkl' : 5, 'mno' : 6,
+           'pqrs': 7, 'tuv' : 8, 'wxyz': 9, ' ' : 0,}
+
+def getIndexAndAmount(letter, dictionary):
+    for item in dictionary:
+        if letter in item:
+            key = item
+            index = item.index(letter) + 1
+    return str(dictionary[key]) * index
+
+def getFullString(string, dictionary):
+    returnString = ''
+    for i in string.lower():
+        returnString += getIndexAndAmount(i, dictionary)
+    return returnString
