@@ -1,0 +1,27 @@
+### A small program to convert to and from morse code. ###
+
+morseTable = {'a': '.-', 'b': '-...', 'c': '-.-.', 'd': '-..', 'e': '.',
+              'f': '..-.', 'g': '--.', 'h': '....', 'i': '..', 'j': '.---',
+              'k': '-.-', 'l': '.-..', 'm': '--', 'n': '-.', 'o': '---',
+              'p': '.--.', 'q': '--.-', 'r': '.-.', 's': '...', 't': '-',
+              'u': '..-', 'v': '...-', 'w': '.--', 'x': '-..-', 'y': '-.--', 
+              'z': '--..', '0': '-----', '1': '.----', '2': '..---', '3': '...--',
+              '4': '....-', '5': '.....', '6': '-....', '7': '--...', '8': '---..',
+              '9': '----.'}
+
+def encodeStringToMorse(string, encodingTable):
+    dashesNdots = ''
+    for i in string.lower():
+        if i in encodingTable:
+            dashesNdots += encodingTable[i]
+            dashesNdots += ' '
+    return dashesNdots
+
+def decodeMorseToString(morseString, encodingTable):
+    returnString = ''
+    morseList = morseString.split()
+    for i in morseList:
+        for key in encodingTable:
+            if encodingTable[key] == i:
+                returnString += key
+    return returnString
