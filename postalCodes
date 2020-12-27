@@ -5,6 +5,7 @@ letters = {'a': 'NL', 'b': 'NS', 'c': 'PEI', 'e': 'NB', 'ghj': 'QC',
            'x': 'NU or NT', 'y': 'YT'}
 
 def deducePostalCode(code, letterDict):
+    code = code.lower()
     if code[1] == '0':
         rural = 'Rural '
     else:
