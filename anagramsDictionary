@@ -1,0 +1,19 @@
+### Classic anagrams checking using dictionaries. ###
+
+def checkIfAnagram(string1, string2):
+    legalChars = 'abcdefghijklmnopqrstuvwxyz'
+    string1Dict = dict()
+    string2Dict = dict()
+    for i in string1.lower().replace(' ', ''):
+        if i not in string1Dict and i in legalChars:
+            string1Dict[i] = 1
+        else:
+            string1Dict[i] += 1
+    for i in string2.lower().replace(' ', ''):
+        if i not in string2Dict and i in legalChars:
+            string2Dict[i] = 1
+        else:
+            string2Dict[i] += 1
+    if string1Dict != string2Dict:
+            return 'These are not anagrams.'
+    return 'These are anagrams.'
