@@ -8,7 +8,7 @@ def check_word(word, letters):
     return True
 
 def print_scrabble_words(text, letters):
-    "Function that will find all possible words out of a 'text' file that match the 'letters' string arguments."
+    "Function that will find all possible words out of a text file that match the letters string arguments."
     total, excluded, usable = 0, 0, 0
     for line in text:
         total += 1
