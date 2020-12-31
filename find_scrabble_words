@@ -1,0 +1,25 @@
+file_in = open("your_filename_here.txt")
+
+def check_word(word, letters):
+    "Function will check the letters in your tray vs. how many are in the word AND if they're even in the word."
+    for letter in word:
+        if letter not in letters or word.count(letter) != letters.count(letter):
+            return False
+    return True
+
+def print_scrabble_words(text, letters):
+    "Function that will find all possible words out of a 'text' file that match the 'letters' string arguments."
+    total = 0
+    excluded = 0
+    usable = 0
+    for line in text:
+        total += 1
+        word = line.strip()
+        if check_word(word, letters): # Goto check_word function with your word and letters (BOTH) string arguments.
+            print(word)
+            printed += 1
+        else:
+            excluded += 1
+    print("Total words: ", total)
+    print("Total words excluded: ", excluded)
+    print("Total usable words: ", usable)
