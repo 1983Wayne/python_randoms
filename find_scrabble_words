@@ -15,7 +15,7 @@ def print_scrabble_words(text, letters):
         word = line.strip()
         if check_word(word, letters): # Goto check_word function with your word and letters (BOTH) string arguments.
             print(word)
-            printed += 1
+            usable += 1
         else:
             excluded += 1
     print("Total words: ", total)
