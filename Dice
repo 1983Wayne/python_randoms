@@ -1,7 +1,5 @@
 import random
 
-### A program to create multiple sided dice for playing in a game. ###
-
 class Die:
     def __init__(self, sides):
         self.sides = sides
@@ -9,10 +7,10 @@ class Die:
         
     def roll(self):
         self.value = random.randint(1, self.sides + 1)
-        return self.getValue()
+        return self.get_value()
         
-    def getValue(self):
+    def get_value(self):
         return self.value
     
-    def setValue(self, value):
+    def set_value(self, value):
         self.value = value
