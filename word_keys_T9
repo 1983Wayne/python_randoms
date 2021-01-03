@@ -5,15 +5,21 @@
 symbols = {'.,?!:' : 1, 'abc' : 2, 'def' : 3, 'ghi' : 4, 'jkl' : 5, 'mno' : 6,
            'pqrs': 7, 'tuv' : 8, 'wxyz': 9, ' ' : 0,}
 
-def getIndexAndAmount(letter, dictionary):
+def get_index_and_amount(letter, dictionary):
+    "Helper function."
+    
     for item in dictionary:
         if letter in item:
             key = item
             index = item.index(letter) + 1
+            
     return str(dictionary[key]) * index
 
-def getFullString(string, dictionary):
-    returnString = ''
+def get_full_string(string, dictionary):
+    "Use this function to convert the string into digits presses."
+    return_string = ''
+    
     for i in string.lower():
-        returnString += getIndexAndAmount(i, dictionary)
-    return returnString
+        return_string += get_index_and_amount(i, dictionary)
+        
+    return return_string
