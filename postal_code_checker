@@ -1,0 +1,28 @@
+### Postal Code checker ###
+
+letters = {'a': 'NL', 'b': 'NS', 'c': 'PEI', 'e': 'NB', 'ghj': 'QC',
+           'klmnp': 'ON', 'r': 'MB', 's': 'SK', 't': 'AB', 'v': 'BC',
+           'x': 'NU or NT', 'y': 'YT'}
+
+def check_postal_code(postal_code, letter_dictionary):
+    "All this will do is check if you have a valid postal code on your hands."
+
+    postal_code = postal_code.lower()
+    code_zero = False
+    
+    if postal_code[1] == '0':
+        urban_or_rural = 'Rural '
+        
+    else:
+        urban_or_rural = 'Urban '
+        
+    for key in letter_dictionary:
+        if postal_code[0] in key:
+            province = letter_dictionary[key]
+            code_zero = True
+            
+    if code_zero == True:
+        return urban_or_rural + province
+        
+    else:
+        return 'Not a valid postal code.'
