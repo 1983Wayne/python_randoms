@@ -1,36 +1,36 @@
 # This code randomly generates 'coin flips' until heads or tails comes up three
 # times in a row.  When that happens, it records the amount of flips in a total
 # and proceeds to do it amount - 1 more times. After 100,000 times, it converges
-# on 7.  I had 6.99984 on my PC, wonder how many times that would occur?
+# on 7.
 
 import random
-def threeFlips():
-    grandTotalFlips = 0
-    amount = 100000
+def three_flips(amount):
+    "Function that simulates coin-tosses for 'amount' of times."
+    total_flips = 0
     for i in range(amount):
-        T = False
-        H = False
+        tails = False
+        heads = False
         times = 0
         flips = 0
         while times < 3:
-            flip = random.randint(0, 1)
+            coin_toss = random.randint(0, 1)
             flips += 1
-            if flip == 0 and T == True:
+            if coin_toss == 0 and tails == True:
                 times += 1
-            elif flip == 0 and T == False:
+            elif coin_toss == 0 and tails == False:
                 times = 1
-                T = True
-                H = False
-            elif flip == 1 and H == True:
+                tails = True
+                heads = False
+            elif coin_toss == 1 and heads == True:
                 times += 1
             else:
                 times = 1
-                H = True
-                T = False
-            if flip == 0:
+                heads = True
+                tails = False
+            if coin_toss == 0:
                 print('H', end=' ')
             else:
                 print('T', end=' ')
         print('(', flips, 'flips )')
-        grandTotalFlips += flips
-    print('On average,', (grandTotalFlips / amount), 'flips were needed.')
+        total_flips += flips
+    print('On average,', (total_flips / amount), 'flips were needed.')
