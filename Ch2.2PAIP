@@ -3,48 +3,48 @@
 ### Verb-Phrase = Verb + Noun-Phrase
 ### Article = The, A
 ### Noun = Man, ball, woman, table
-### Verb = Hit, took, saw, liked
+### Verb = hit, took, saw, liked
 
 # Supposedly called the 'Context-free phrase structure' with generative syntax
 
 import random
 
 def sentence():
-    return nounPhrase() + verbPhrase()
+    return noun_phrase() + verb_phrase()
 
-def verbPhrase():
-    return verb() + nounPhrase()
+def verb_phrase():
+    return verb() + noun_phrase()
 
 def verb():
-    return oneOf('hit took saw liked'.split())
+    return one_of('hit took saw liked'.split())
     
 def article():
-    return oneOf('the a'.split())
+    return one_of('the a'.split())
     
 def noun():
-    return oneOf('man ball woman table'.split())
+    return one_of('man ball woman table'.split())
 
-def nounPhrase():
-    return article() + AdjMaybe() + noun() + PPStar()
+def noun_phrase():
+    return article() + adj_maybe() + noun() + PP_star()
 
-def oneOf(l):
+def one_of(l):
     return [random.choice(l)]
 
-def AdjMaybe():
+def adj_maybe():
     if random.randint(0, 1) == 0:
-        return adj() + AdjMaybe()
+        return adj() + adj_maybe()
     return []
 
-def PPStar():
+def PP_star():
     if random.randint(0, 1) == 0:
-        return PP() + PPStar()
+        return PP() + PP_star()
     return []
 
 def PP():
-    return prep() + nounPhrase()
+    return prep() + noun_phrase()
 
 def prep():
-    return oneOf('to in by with on'.split())
+    return one_of('to in by with on'.split())
     
 def adj():
-    return oneOf('big little blue green adiabatic'.split())
+    return one_of('big little blue green adiabatic'.split())
